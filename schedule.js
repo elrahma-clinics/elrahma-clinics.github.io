@@ -35,14 +35,15 @@ const specialties = [...new Set(scheduleData.rows.map((row) => row.specialty))];
 
 document.getElementById('updated-at').textContent = scheduleData.lastUpdated;
 
-function renderSchedule(selectedSpecialty = 'الكل') {
+function renderSchedule(selectedSpecialty = 'الكل', displayLabel = null) {
+  const specialtyList = selectedSpecialty.split(',');
   const visibleRows = selectedSpecialty === 'الكل'
     ? scheduleData.rows
-    : scheduleData.rows.filter((row) => row.specialty === selectedSpecialty);
+    : scheduleData.rows.filter((row) => specialtyList.includes(row.specialty));
 
   activeSpecialty.textContent = selectedSpecialty === 'الكل'
     ? 'كل الأطباء والمواعيد'
-    : `أطباء تخصص ${selectedSpecialty}`;
+    : `أطباء تخصص ${displayLabel || selectedSpecialty}`;
 
   cardsContainer.innerHTML = visibleRows.length
     ? visibleRows.map((row) => `
@@ -74,7 +75,8 @@ filterContainer.addEventListener('click', (event) => {
 
 document.querySelectorAll('.specialty-button').forEach((button) => {
   button.addEventListener('click', () => {
-    renderSchedule(button.dataset.specialty);
+    const label = button.querySelector('h3')?.textContent.trim();
+    renderSchedule(button.dataset.specialty, label);
     document.getElementById('schedule').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
