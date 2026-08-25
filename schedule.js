@@ -12,7 +12,7 @@ const scheduleData = {
     { doctor: 'د. إسلام كمال', specialty: 'مخ وأعصاب', time: 'الخميس — 5:00 عصرًا' },
     { doctor: 'د. بسمة سعيد', specialty: 'جلدية', time: 'الجمعة — 6:00 مساءً' },
     { doctor: 'د. شيماء عبدالمجيد', specialty: 'أمراض نفسية', time: 'الأحد — 11:45 ظهرًا' },
-    { doctor: 'د. عبدالكريم عزوز', specialty: 'جراحة عامة', time: 'الجمعة من كل شهر', note: 'أستاذ مساعد واستشاري الجراحة بالقصر العيني.' },
+    { doctor: 'د. عبدالكريم عزوز', specialty: 'جراحة عامة', time: 'الجمعة من كل شهر — يتم تحديده والإعلان عنه', note: 'أستاذ مساعد واستشاري الجراحة بالقصر العيني.' },
     { doctor: 'د. حسن عبدالباقي', specialty: 'عظام', time: 'السبت — 9:00 مساءً' },
     { doctor: 'د. أسامة سعد', specialty: 'عظام', time: 'الأربعاء — 2:00 ظهرًا' },
     { doctor: 'د. خالد صلاح', specialty: 'رمد', time: 'الأحد — 10:00 مساءً' },
@@ -28,10 +28,73 @@ const scheduleData = {
   ]
 };
 
+const filterContainer = document.getElementById('schedule-filter');
+const cardsContainer = document.getElementById('schedule-cards');
+const activeSpecialty = document.getElementById('active-specialty');
+const specialties = [...new Set(scheduleData.rows.map((row) => row.specialty))];
+
 document.getElementById('updated-at').textContent = scheduleData.lastUpdated;
-document.getElementById('schedule-body').innerHTML = scheduleData.rows.map((row) => `
-  <tr>
-    <td>${row.doctor}${row.note ? `<span class="doctor-note">${row.note}</span>` : ''}</td>
-    <td>${row.specialty}</td>
-    <td>${row.time}</td>
-  </tr>`).join('');
+
+function renderSchedule(selectedSpecialty = 'الكل') {
+  const visibleRows = selectedSpecialty === 'الكل'
+    ? scheduleData.rows
+    : scheduleData.rows.filter((row) => row.specialty === selectedSpecialty);
+
+  activeSpecialty.textContent = selectedSpecialty === 'الكل'
+    ? 'كل الأطباء والمواعيد'
+    : `أطباء تخصص ${selectedSpecialty}`;
+
+  cardsContainer.innerHTML = visibleRows.length
+    ? visibleRows.map((row) => `
+      <article class="doctor-card">
+        <h3>${row.doctor}</h3>
+        <span class="doctor-specialty">${row.specialty}</span>
+        <span class="appointment-label">الموعد</span>
+        <div class="appointment">${row.time}</div>
+        ${row.note ? `<span class="doctor-note">${row.note}</span>` : ''}
+      </article>`).join('')
+    : '<p class="empty-schedule">لا توجد مواعيد مضافة لهذا التخصص حاليًا.</p>';
+
+  filterContainer.querySelectorAll('.filter-chip').forEach((button) => {
+    button.classList.toggle('is-active', button.dataset.specialty === selectedSpecialty);
+  });
+
+  document.querySelectorAll('.specialty-button').forEach((button) => {
+    button.classList.toggle('is-selected', button.dataset.specialty === selectedSpecialty);
+  });
+}
+
+filterContainer.innerHTML = ['الكل', ...specialties].map((specialty) => `
+  <button class="filter-chip" type="button" data-specialty="${specialty}">${specialty === 'الكل' ? 'كل التخصصات' : specialty}</button>`).join('');
+
+filterContainer.addEventListener('click', (event) => {
+  const button = event.target.closest('.filter-chip');
+  if (button) renderSchedule(button.dataset.specialty);
+});
+
+document.querySelectorAll('.specialty-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    renderSchedule(button.dataset.specialty);
+    document.getElementById('schedule').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+const menuButton = document.getElementById('mobile-menu');
+const navLinks = document.getElementById('nav-links');
+menuButton.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+  menuButton.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
+  menuButton.textContent = isOpen ? '×' : '☰';
+});
+
+navLinks.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'فتح القائمة');
+    menuButton.textContent = '☰';
+  });
+});
+
+renderSchedule();
