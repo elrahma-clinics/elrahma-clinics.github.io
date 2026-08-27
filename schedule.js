@@ -81,6 +81,37 @@ document.querySelectorAll('.specialty-button').forEach((button) => {
   });
 });
 
+function matchBrandLineWidth() {
+  const line1 = document.querySelector('.brand-line1');
+  const line2 = document.querySelector('.brand-line2');
+  if (!line1 || !line2) return;
+
+  line2.style.letterSpacing = '0px';
+  const target = line1.getBoundingClientRect().width;
+  const natural = line2.getBoundingClientRect().width;
+  if (natural >= target) return;
+
+  let lo = 0;
+  let hi = 40;
+  for (let i = 0; i < 24; i++) {
+    const mid = (lo + hi) / 2;
+    line2.style.letterSpacing = `${mid}px`;
+    const width = line2.getBoundingClientRect().width;
+    if (width < target) lo = mid; else hi = mid;
+  }
+  line2.style.letterSpacing = `${hi}px`;
+}
+
+window.addEventListener('load', matchBrandLineWidth);
+window.addEventListener('resize', () => {
+  clearTimeout(window.__brandResizeTimer);
+  window.__brandResizeTimer = setTimeout(matchBrandLineWidth, 120);
+});
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(matchBrandLineWidth);
+}
+matchBrandLineWidth();
+
 const menuButton = document.getElementById('mobile-menu');
 const navLinks = document.getElementById('nav-links');
 menuButton.addEventListener('click', () => {
