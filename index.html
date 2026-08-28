@@ -55,6 +55,14 @@
     .stat + .stat { border-right:1px solid var(--line); }
     .stat strong { display:block; color:var(--teal); font-size:1.13rem; }
     .stat span { color:var(--muted); font-size:.74rem; }
+    .today-highlight { padding-top:26px; }
+    .today-highlight-inner { display:flex; flex-wrap:wrap; align-items:center; gap:16px; padding:19px 23px; border:1px solid var(--line); border-radius:18px; background:#fff; box-shadow:0 15px 30px rgba(17,67,79,.07); }
+    .today-highlight-icon { display:grid; flex:none; place-items:center; width:48px; height:48px; border-radius:14px; color:var(--teal); background:#e6f6f9; }
+    .today-highlight-icon .icon-svg { width:24px; height:24px; }
+    .today-highlight-text { display:flex; flex:1; min-width:200px; flex-direction:column; gap:2px; }
+    .today-highlight-text strong { color:var(--ink); font-size:.95rem; }
+    .today-highlight-text span { color:var(--muted); font-size:.78rem; }
+    .today-highlight-inner .button { flex:none; padding:11px 18px; font-size:.82rem; }
     section { padding:88px 0; }
     .section-head { max-width:720px; margin:0 auto 38px; text-align:center; }
     .section-kicker { color:var(--teal); font-size:.78rem; font-weight:800; }
@@ -76,16 +84,29 @@
     .schedule-top strong { font-size:.96rem; }
     .schedule-top span { font-size:.72rem; color:#dffaff; }
     .notice { display:flex; align-items:flex-start; gap:9px; margin:18px 22px 0; padding:12px 15px; border-radius:11px; color:#6e5606; background:#fff7d9; font-size:.76rem; }
+    .schedule-toolbar { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; margin-bottom:16px; }
+    .scope-tabs { display:inline-flex; gap:2px; padding:4px; border-radius:999px; background:#e3f2f5; }
+    .scope-tab { padding:8px 16px; border:0; border-radius:999px; color:#38626e; background:transparent; font:inherit; font-size:.76rem; font-weight:700; cursor:pointer; transition:.2s; }
+    .scope-tab.is-active { color:#fff; background:var(--teal); box-shadow:0 4px 10px rgba(8,127,148,.25); }
+    .schedule-search { position:relative; flex:1; min-width:200px; max-width:320px; }
+    .schedule-search input { width:100%; padding:10px 38px 10px 14px; border:1px solid #cde5ea; border-radius:999px; color:var(--ink); background:#fff; font:inherit; font-size:.8rem; }
+    .schedule-search input:focus { outline:2px solid var(--teal); outline-offset:1px; }
+    .schedule-search .icon-svg { position:absolute; top:50%; right:13px; width:16px; height:16px; color:#7fa3ab; transform:translateY(-50%); pointer-events:none; }
     .schedule-filter { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:0 auto 19px; }
     .filter-chip { padding:8px 12px; border:1px solid #cde5ea; border-radius:999px; color:#38626e; background:#fff; font:inherit; font-size:.73rem; cursor:pointer; transition:.2s; }
     .filter-chip:hover, .filter-chip.is-active { border-color:var(--teal); color:#fff; background:var(--teal); }
     .schedule-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; padding:18px 22px 22px; }
-    .doctor-card { min-height:168px; padding:18px; border:1px solid #dcebef; border-radius:15px; background:#fbfeff; }
-    .doctor-card h3 { margin:0 0 3px; color:var(--ink); font-size:.92rem; }
-    .doctor-card .doctor-specialty { display:inline-block; margin-bottom:13px; padding:3px 9px; border-radius:999px; color:var(--teal); background:#e6f6f9; font-size:.68rem; font-weight:700; }
-    .doctor-card .appointment-label { display:block; margin-bottom:2px; color:var(--muted); font-size:.65rem; }
-    .doctor-card .appointment { color:#2b5965; font-size:.76rem; font-weight:700; line-height:1.65; }
-    .doctor-note { display:block; margin-top:10px; color:var(--muted); font-size:.66rem; line-height:1.6; }
+    .doctor-card { min-height:0; display:flex; flex-direction:column; gap:9px; padding:18px; border:1px solid #dcebef; border-radius:15px; background:#fbfeff; }
+    .doctor-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+    .doctor-card h3 { margin:0; color:var(--ink); font-size:.92rem; }
+    .doctor-card .doctor-specialty { display:inline-block; padding:3px 9px; border-radius:999px; color:var(--teal); background:#e6f6f9; font-size:.68rem; font-weight:700; }
+    .today-badge { flex:none; padding:3px 9px; border-radius:999px; color:#1f9d4d; background:#e9f9ee; font-size:.6rem; font-weight:800; white-space:nowrap; }
+    .doctor-days { display:flex; flex-wrap:wrap; gap:6px; }
+    .day-chip { padding:3px 9px; border-radius:999px; color:#38626e; background:#f1f7f8; font-size:.65rem; font-weight:700; }
+    .day-chip.is-today { color:#fff; background:var(--teal); }
+    .appointment-time { display:inline-flex; align-self:flex-start; align-items:center; gap:7px; margin-top:1px; padding:7px 13px; border-radius:999px; color:#0c5c6c; background:#e6f6f9; font-weight:800; font-size:.82rem; }
+    .appointment-time .icon-svg { width:15px; height:15px; color:var(--teal); }
+    .doctor-note { display:block; margin-top:2px; color:var(--muted); font-size:.66rem; line-height:1.6; }
     .empty-schedule { grid-column:1/-1; padding:26px; color:var(--muted); text-align:center; font-size:.85rem; }
     .service-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:25px; }
     .service { display:flex; gap:15px; align-items:flex-start; padding:20px; border:1px solid var(--line); border-radius:16px; background:#fff; }
@@ -94,6 +115,8 @@
     .service:nth-child(2) .service-icon { background:var(--orange); }
     .service h3 { margin:0; font-size:.92rem; }
     .service p { margin:3px 0 0; color:var(--muted); font-size:.75rem; }
+    .service-time { display:inline-flex; align-items:center; gap:6px; margin-top:9px; padding:5px 11px; border-radius:999px; color:#0c5c6c; background:#eef7fb; font-size:.71rem; font-weight:700; }
+    .service-time .icon-svg { width:13px; height:13px; color:var(--teal); }
     .about { display:grid; grid-template-columns:1fr 1fr; gap:54px; align-items:center; }
     .about-art { position:relative; min-height:350px; overflow:hidden; border-radius:25px; background:linear-gradient(140deg,#0d788c,#23a8cf); }
     .about-art:before { content:"✦"; position:absolute; top:48px; right:42px; color:#a8d84c; font-size:6rem; line-height:1; }
@@ -122,8 +145,9 @@
     footer { padding:21px 0; color:#9ec7d0; background:#042d37; font-size:.72rem; }
     footer .container { display:flex; justify-content:space-between; gap:14px; }
     .floating-wa { position:fixed; left:20px; bottom:20px; z-index:9; display:flex; align-items:center; gap:8px; padding:12px 16px; border-radius:999px; color:#fff; background:#1fa855; box-shadow:0 8px 22px rgba(13,112,54,.28); font-size:.8rem; font-weight:700; }
+    .mobile-actionbar { display:none; }
     @media (max-width:960px) { nav { display:none; } nav.open { position:absolute; top:67px; right:0; left:0; display:flex; flex-direction:column; align-items:stretch; gap:0; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:0 15px 30px rgba(6,60,74,.14); } nav.open a { padding:13px 16px; border-bottom:1px solid #edf3f5; } nav.open a:last-child { border-bottom:0; } .menu { display:block; } .hero-grid,.about { grid-template-columns:1fr; } .hero-card { display:none; } .specialty-grid { grid-template-columns:repeat(3,1fr); } .schedule-cards { grid-template-columns:repeat(2,1fr); } .quick-actions { grid-template-columns:repeat(2,1fr); } }
-    @media (max-width:610px) { .container { width:min(100% - 28px,1140px); } .topbar .container { justify-content:center; } .topbar .container > span { display:none; } .nav { min-height:68px; } .brand { font-size:.83rem; } .brand img { width:53px; height:53px; } .nav > .button { padding:10px 12px; font-size:.73rem; } .hero { padding:54px 0 68px; } .hero h1 { letter-spacing:-.8px; } .hero-actions { display:grid; grid-template-columns:1fr 1fr; } .hero-actions .button { padding:12px 8px; font-size:.79rem; } .hero-actions .button:last-child { grid-column:1/-1; } .stats-grid { grid-template-columns:1fr; } .stat + .stat { border-top:1px solid var(--line); border-right:0; } section { padding:58px 0; } .specialty-grid { grid-template-columns:repeat(2,1fr); gap:10px; } .specialty { min-height:132px; padding:15px 13px; } .schedule-cards { grid-template-columns:1fr; padding:14px; } .doctor-card { min-height:0; } .filter-chip { font-size:.68rem; } .service-grid,.contact-grid { grid-template-columns:1fr; } .quick-actions { grid-template-columns:1fr 1fr; } .about-art { min-height:275px; } .about-art p { right:27px; bottom:26px; left:27px; font-size:.86rem; } .contact-card { min-height:auto; } footer .container { display:block; text-align:center; } .floating-wa { left:14px; bottom:14px; } }
+    @media (max-width:610px) { .container { width:min(100% - 28px,1140px); } .topbar .container { justify-content:center; } .topbar .container > span { display:none; } .nav { min-height:68px; } .brand { font-size:.83rem; } .brand img { width:53px; height:53px; } .nav > .button { padding:10px 12px; font-size:.73rem; } .hero { padding:54px 0 68px; } .hero h1 { letter-spacing:-.8px; } .hero-actions { display:grid; grid-template-columns:1fr 1fr; } .hero-actions .button { padding:12px 8px; font-size:.79rem; } .hero-actions .button:last-child { grid-column:1/-1; } .stats-grid { grid-template-columns:1fr; } .stat + .stat { border-top:1px solid var(--line); border-right:0; } section { padding:58px 0; } .specialty-grid { grid-template-columns:repeat(2,1fr); gap:10px; } .specialty { min-height:132px; padding:15px 13px; } .schedule-cards { grid-template-columns:1fr; padding:14px; } .doctor-card { min-height:0; } .filter-chip { font-size:.68rem; } .service-grid,.contact-grid { grid-template-columns:1fr; } .quick-actions { grid-template-columns:1fr 1fr; } .about-art { min-height:275px; } .about-art p { right:27px; bottom:26px; left:27px; font-size:.86rem; } .contact-card { min-height:auto; } footer .container { display:block; text-align:center; } .floating-wa { left:14px; bottom:calc(74px + env(safe-area-inset-bottom)); } body { padding-bottom:66px; } .mobile-actionbar { position:fixed; left:0; right:0; bottom:0; z-index:12; display:flex; background:#fff; border-top:1px solid var(--line); box-shadow:0 -6px 18px rgba(6,60,74,.1); padding:7px 6px calc(7px + env(safe-area-inset-bottom)); } .mobile-actionbar a { display:flex; flex:1; flex-direction:column; align-items:center; gap:3px; padding:6px 4px; border-radius:10px; color:#31525c; font-size:.64rem; font-weight:700; } .mobile-actionbar a:active { background:#eef7f9; } .mobile-actionbar .icon-svg { width:19px; height:19px; color:var(--teal); } .schedule-toolbar { gap:10px; } .scope-tabs { width:100%; justify-content:center; } .schedule-search { max-width:none; } }
   </style>
 </head>
 <body>
@@ -209,6 +233,21 @@
         <path d="M4 10v4h3l5 4V6L7 10H4Z"/>
         <path d="M16 9a4 4 0 0 1 0 6"/>
       </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 7v5l3.5 2"/>
+      </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24">
+        <rect x="3.5" y="5" width="17" height="15" rx="2.5"/>
+        <path d="M3.5 10h17M8 3v4M16 3v4"/>
+        <circle cx="8.2" cy="14.3" r="1" fill="currentColor" stroke="none"/>
+        <circle cx="12" cy="14.3" r="1" fill="currentColor" stroke="none"/>
+        <circle cx="15.8" cy="14.3" r="1" fill="currentColor" stroke="none"/>
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="10.5" cy="10.5" r="6.5"/>
+        <path d="M20 20l-4.5-4.5"/>
+      </symbol>
     </defs>
   </svg>
   <div class="topbar"><div class="container"><span>عيادات خيرية بأسعار رمزية لأهالينا في أطفيح</span><a href="https://www.whatsapp.com/channel/0029VbBMPU0KbYMDyn8Uxs2t" target="_blank" rel="noopener">تابع آخر الأخبار عبر قناة واتساب ←</a></div></div>
@@ -221,8 +260,10 @@
   </header>
 
   <main>
-    <section class="hero" id="home"><div class="container hero-grid"><div><span class="eyebrow">✦ عيادات خيرية بأسعار رمزية</span><h1>رعاية متخصصة،<br>قريبة منكم.</h1><p>في عيادات الرحمة التخصصية، نؤمن أن الخدمة الطبية الجيدة حق للجميع؛ لذلك نقدم تخصصات متنوعة ورعاية تراعي احتياجات أهلنا.</p><div class="hero-actions"><a class="button button-light" href="tel:+201015655836">اتصل للحجز</a><a class="button" href="https://wa.me/201004665241" target="_blank" rel="noopener">تواصل واتساب</a><a class="button" href="#schedule">شاهد المواعيد</a></div></div><aside class="hero-card"><img src="logo.png" alt=""><h2>عيادات الرحمة التخصصية</h2><p>منية الرقة · أطفيح</p></aside></div></section>
+    <section class="hero" id="home"><div class="container hero-grid"><div><span class="eyebrow">✦ عيادات خيرية بأسعار رمزية</span><h1>رعاية متخصصة،<br>قريبة منكم.</h1><p>في عيادات الرحمة التخصصية، نؤمن أن الخدمة الطبية الجيدة حق للجميع؛ لذلك نقدم تخصصات متنوعة ورعاية تراعي احتياجات أهلنا.</p><div class="hero-actions"><a class="button button-light" href="tel:+201015655836">اتصل للحجز الآن</a><a class="button" href="https://wa.me/201004665241" target="_blank" rel="noopener">استفسر عبر واتساب</a><a class="button" href="#schedule">اعرف مواعيد الأطباء</a></div></div><aside class="hero-card"><img src="logo.png" alt=""><h2>عيادات الرحمة التخصصية</h2><p>منية الرقة · أطفيح</p></aside></div></section>
     <div class="stats"><div class="container stats-grid"><div class="stat"><strong>14+ تخصصًا</strong><span>لتغطية احتياجات الأسرة</span></div><div class="stat"><strong>خدمات مساندة</strong><span>معمل ونظارات داخل العيادة</span></div><div class="stat"><strong>حجز هاتفي</strong><span>اتصل مباشرة لتأكيد الموعد</span></div></div></div>
+
+    <div class="today-highlight"><div class="container today-highlight-inner"><div class="today-highlight-icon"><svg class="icon-svg"><use href="#icon-calendar"></use></svg></div><div class="today-highlight-text"><strong id="today-highlight-title">جارٍ التحقق من مواعيد اليوم…</strong><span id="today-highlight-sub"></span></div><a class="button button-primary" href="#schedule" id="today-highlight-cta">مواعيد اليوم</a></div></div>
 
     <section id="specialties"><div class="container"><div class="section-head"><span class="section-kicker">التخصصات الطبية</span><h2>كل ما تحتاجونه من رعاية، في مكان واحد</h2><p>تعرفوا على التخصصات المتاحة، ثم راجعوا جدول المواعيد للحجز والتأكيد.</p></div><div class="specialty-grid">
       <button class="specialty specialty-button" data-specialty="أطفال" type="button"><i><svg class="icon-svg"><use href="#icon-child"></use></svg></i><h3>الأطفال</h3><p>اضغط لمواعيد أطباء الأطفال.</p></button><button class="specialty specialty-button" data-specialty="مسالك بولية" type="button"><i><svg class="icon-svg"><use href="#icon-kidney"></use></svg></i><h3>المسالك البولية</h3><p>اضغط لمواعيد الأطباء.</p></button><button class="specialty specialty-button" data-specialty="تخاطب وسلوك" type="button"><i><svg class="icon-svg"><use href="#icon-speech"></use></svg></i><h3>تخاطب وسلوك</h3><p>اضغط لمواعيد الأطباء.</p></button><button class="specialty specialty-button" data-specialty="مخ وأعصاب" type="button"><i><svg class="icon-svg"><use href="#icon-brain"></use></svg></i><h3>المخ والأعصاب</h3><p>اضغط لمواعيد الأطباء.</p></button>
@@ -231,16 +272,21 @@
       <button class="specialty specialty-button" data-specialty="أنف وأذن وحنجرة" type="button"><i><svg class="icon-svg"><use href="#icon-ear"></use></svg></i><h3>أنف وأذن وحنجرة</h3><p>اضغط لمواعيد الأطباء.</p></button>
     </div></div></section>
 
-    <section class="schedule-section" id="schedule"><div class="container"><div class="section-head"><span class="section-kicker">مواعيد الأطباء</span><h2>اختر تخصصك، ثم اعرف الطبيب والموعد</h2><p>اضغط على بطاقة أي تخصص بالأعلى، أو اختر التخصص من الأزرار هنا.</p></div><div class="schedule-filter" id="schedule-filter" aria-label="تصفية المواعيد"></div><div class="schedule-card"><div class="schedule-top"><strong id="active-specialty">كل الأطباء والمواعيد</strong><span id="updated-at">جارٍ تحميل آخر تحديث…</span></div><div class="notice"><span>⚠</span><span>قد تتغير المواعيد بشكل دوري. للحجز أو الاستفسار، اتصلوا بالعيادة قبل الزيارة.</span></div><div class="schedule-cards" id="schedule-cards"></div></div></div></section>
+    <section class="schedule-section" id="schedule"><div class="container"><div class="section-head"><span class="section-kicker">مواعيد الأطباء</span><h2>اختر تخصصك، ثم اعرف الطبيب والموعد</h2><p>اضغط على بطاقة أي تخصص بالأعلى، أو اختر التخصص من الأزرار هنا.</p></div><div class="schedule-toolbar"><div class="scope-tabs" id="scope-tabs" role="tablist" aria-label="نطاق المواعيد"><button class="scope-tab" type="button" data-scope="today">مواعيد اليوم</button><button class="scope-tab" type="button" data-scope="tomorrow">غدًا</button><button class="scope-tab" type="button" data-scope="all">كل المواعيد</button></div><div class="schedule-search" role="search"><input type="search" id="schedule-search-input" placeholder="ابحث باسم الطبيب أو التخصص…" aria-label="بحث في المواعيد"><svg class="icon-svg"><use href="#icon-search"></use></svg></div></div><div class="schedule-filter" id="schedule-filter" aria-label="تصفية المواعيد"></div><div class="schedule-card"><div class="schedule-top"><strong id="active-specialty">كل الأطباء والمواعيد</strong><span id="updated-at">جارٍ تحميل آخر تحديث…</span></div><div class="notice"><span>⚠</span><span>قد تتغير المواعيد بشكل دوري. للحجز أو الاستفسار، اتصلوا بالعيادة قبل الزيارة.</span></div><div class="schedule-cards" id="schedule-cards"></div></div></div></section>
 
-    <section id="services"><div class="container"><div class="section-head"><span class="section-kicker">خدمات مساندة داخل العيادة</span><h2>خدمات تكمل رعايتكم</h2><p>متاحة داخل مقر عيادات الرحمة لتيسير الاحتياجات الأساسية للزوار.</p></div><div class="service-grid"><article class="service"><div class="service-icon"><svg class="icon-svg"><use href="#icon-glasses"></use></svg></div><div><h3>نور العيون للنظارات</h3><p>صنع وبيع وتصليح النظارات الطبية. متواجد يوميًا من الساعة 12 ظهرًا.</p></div></article><article class="service"><div class="service-icon"><svg class="icon-svg"><use href="#icon-flask"></use></svg></div><div><h3>معمل العربي الحديث</h3><p>خدمة تحاليل طبية داخل العيادة. يوميًا من 9:30 صباحًا، والجمعة من 2 ظهرًا.</p></div></article></div></div></section>
+    <section id="services"><div class="container"><div class="section-head"><span class="section-kicker">خدمات مساندة داخل العيادة</span><h2>خدمات تكمل رعايتكم</h2><p>متاحة داخل مقر عيادات الرحمة لتيسير الاحتياجات الأساسية للزوار.</p></div><div class="service-grid"><article class="service"><div class="service-icon"><svg class="icon-svg"><use href="#icon-glasses"></use></svg></div><div><h3>نور العيون للنظارات</h3><p>صنع وبيع وتصليح النظارات الطبية.</p><span class="service-time"><svg class="icon-svg"><use href="#icon-clock"></use></svg>يوميًا من 12 ظهرًا</span></div></article><article class="service"><div class="service-icon"><svg class="icon-svg"><use href="#icon-flask"></use></svg></div><div><h3>معمل العربي الحديث</h3><p>خدمة تحاليل طبية داخل العيادة.</p><span class="service-time"><svg class="icon-svg"><use href="#icon-clock"></use></svg>يوميًا 9:30 صباحًا، والجمعة 2 ظهرًا</span></div></article></div></div></section>
 
     <section id="about"><div class="container about"><div class="about-art"><div class="circle"></div><p>« نسعى لتقديم خدمة طبية متميزة تراعي الإنسان وتخفف العبء عن أهالينا. »</p></div><div class="about-copy"><span class="section-kicker">عن العيادات</span><h2>رعاية إنسانية، بسعر في المتناول</h2><p>عيادات الرحمة التخصصية هي عيادات خيرية تهدف إلى تقديم خدمات طبية متنوعة بجودة تليق بأهلنا، مع الحفاظ على أسعار رمزية.</p><div class="checks"><div><span class="check">✓</span>تخصصات طبية متنوعة تحت سقف واحد</div><div><span class="check">✓</span>مواعيد واضحة وتأكيد سهل للحجز</div><div><span class="check">✓</span>موقع قريب من أهالينا في أطفيح</div></div></div></div></section>
 
-    <section class="contact" id="contact"><div class="container"><div class="section-head"><span class="section-kicker">تواصل وحجز</span><h2>نحن هنا لمساعدتكم</h2><p>للحجز والتأكد من المواعيد، اتصلوا مباشرة بالعيادة.</p></div><div class="contact-grid"><article class="contact-card"><i><svg class="icon-svg"><use href="#icon-pin"></use></svg></i><h3>العنوان</h3><a href="https://maps.app.goo.gl/NtYrvfoB6vNFKtUUA" target="_blank" rel="noopener">منية الرقة – كوبري أبوهلول – أمام محلات الحاج كارم عزوز – أطفيح</a></article><article class="contact-card"><i><svg class="icon-svg"><use href="#icon-phone"></use></svg></i><h3>أرقام الحجز</h3><a href="tel:+201015655836">01015655836</a><a href="tel:+20238416245">0238416245</a></article><article class="contact-card"><i><svg class="icon-svg"><use href="#icon-whatsapp"></use></svg></i><h3>واتساب للتواصل</h3><a href="https://wa.me/201004665241" target="_blank" rel="noopener">01004665241</a><p>للاستفسارات والتواصل فقط.</p></article></div><div class="quick-actions"><a class="quick-action" href="tel:+201015655836"><svg class="icon-svg"><use href="#icon-phone"></use></svg> اتصل للحجز</a><a class="quick-action" href="https://wa.me/201004665241" target="_blank" rel="noopener"><svg class="icon-svg"><use href="#icon-whatsapp"></use></svg> تواصل واتساب</a><a class="quick-action" href="https://www.whatsapp.com/channel/0029VbBMPU0KbYMDyn8Uxs2t" target="_blank" rel="noopener"><svg class="icon-svg"><use href="#icon-channel"></use></svg> قناة واتساب</a><a class="quick-action" href="https://www.facebook.com/AlRahma.Specialized.Clinics/" target="_blank" rel="noopener">f صفحة فيسبوك</a></div></div></section>
+    <section class="contact" id="contact"><div class="container"><div class="section-head"><span class="section-kicker">تواصل وحجز</span><h2>نحن هنا لمساعدتكم</h2><p>للحجز والتأكد من المواعيد، اتصلوا مباشرة بالعيادة.</p></div><div class="contact-grid"><article class="contact-card"><i><svg class="icon-svg"><use href="#icon-pin"></use></svg></i><h3>العنوان</h3><a href="https://maps.app.goo.gl/NtYrvfoB6vNFKtUUA" target="_blank" rel="noopener">منية الرقة – كوبري أبوهلول – أمام محلات الحاج كارم عزوز – أطفيح</a></article><article class="contact-card"><i><svg class="icon-svg"><use href="#icon-phone"></use></svg></i><h3>أرقام الحجز</h3><a href="tel:+201015655836">01015655836</a><a href="tel:+20238416245">0238416245</a></article><article class="contact-card"><i><svg class="icon-svg"><use href="#icon-whatsapp"></use></svg></i><h3>واتساب للتواصل</h3><a href="https://wa.me/201004665241" target="_blank" rel="noopener">01004665241</a><p>للاستفسارات والتواصل فقط.</p></article></div><div class="quick-actions"><a class="quick-action" href="tel:+201015655836"><svg class="icon-svg"><use href="#icon-phone"></use></svg> اتصل للحجز الآن</a><a class="quick-action" href="https://wa.me/201004665241" target="_blank" rel="noopener"><svg class="icon-svg"><use href="#icon-whatsapp"></use></svg> استفسر عبر واتساب</a><a class="quick-action" href="https://www.whatsapp.com/channel/0029VbBMPU0KbYMDyn8Uxs2t" target="_blank" rel="noopener"><svg class="icon-svg"><use href="#icon-channel"></use></svg> قناة واتساب</a><a class="quick-action" href="https://www.facebook.com/AlRahma.Specialized.Clinics/" target="_blank" rel="noopener">f صفحة فيسبوك</a></div></div></section>
   </main>
   <footer><div class="container"><span>© <span id="year"></span> عيادات الرحمة التخصصية. جميع الحقوق محفوظة.</span><a href="https://www.facebook.com/AlRahma.Specialized.Clinics/" target="_blank" rel="noopener">تابعونا على فيسبوك</a></div></footer>
   <a class="floating-wa" href="https://wa.me/201004665241" target="_blank" rel="noopener"><svg class="icon-svg"><use href="#icon-whatsapp"></use></svg> تواصل واتساب</a>
+  <nav class="mobile-actionbar" aria-label="إجراءات سريعة">
+    <a href="tel:+201015655836"><svg class="icon-svg"><use href="#icon-phone"></use></svg><span>اتصال</span></a>
+    <a href="#schedule"><svg class="icon-svg"><use href="#icon-calendar"></use></svg><span>المواعيد</span></a>
+    <a href="https://maps.app.goo.gl/NtYrvfoB6vNFKtUUA" target="_blank" rel="noopener"><svg class="icon-svg"><use href="#icon-pin"></use></svg><span>الموقع</span></a>
+  </nav>
   <script src="schedule.js"></script><script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
