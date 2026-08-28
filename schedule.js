@@ -27,7 +27,7 @@
   ------------------------------------------------------------------
 */
 const scheduleData = {
-  lastUpdated: 'آخر تحديث للجدول: 27 أغسطس 2026',
+  lastUpdated: 'آخر تحديث للجدول: 29 أغسطس 2026',
   rows: [
     { doctor: 'د. سامي عثمان', specialty: 'أطفال', days: ['الأحد', 'الثلاثاء', 'الخميس'], time: '6:00 مساءً' },
     { doctor: 'د. محمد علي', specialty: 'مسالك بولية', days: ['الأربعاء'], time: '7:00 مساءً' },
@@ -47,7 +47,8 @@ const scheduleData = {
     { doctor: 'د. محمود كمال', specialty: 'أسنان', frequency: 'daily-except', exceptDays: ['الثلاثاء'], time: 'بعد العصر' },
     { doctor: 'د. نورهان سيد', specialty: 'أسنان', days: ['الاثنين'], time: '11:00 صباحًا' },
     { doctor: 'د. إسلام رمضان', specialty: 'تقويم أسنان', frequency: 'monthly-first', days: ['الثلاثاء'], time: '' },
-    { doctor: 'د. حازم نجيب', specialty: 'أنف وأذن وحنجرة', days: ['الأربعاء'], time: '3:30 عصرًا' }
+    { doctor: 'د. حازم نجيب', specialty: 'أنف وأذن وحنجرة', days: ['الأربعاء'], time: '3:30 عصرًا' },
+    { doctor: 'د. محمد جمال أبو خضرة', specialty: 'قلب وأوعية دموية', frequency: 'monthly', days: ['الجمعة'], time: 'يتم تحديده والإعلان عنه', note: 'دكتوراة في القلب والأوعية الدموية.' }
   ]
 };
 
