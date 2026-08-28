@@ -370,6 +370,88 @@ navLinks.querySelectorAll('a').forEach((link) => {
   });
 });
 
+/* ============================ حالة الخدمات المساندة (مفتوح الآن / مغلق الآن) ============================ */
+/*
+  الحالة بتتحسب من وقت مصر الحالي (Africa/Cairo) مقارنة بمواعيد الفتح المذكورة
+  فعليًا في index.html لكل خدمة. مفيش وقت إغلاق معلن لأي من الخدمتين، فالمنطق
+  هنا بيعتبر الخدمة "متاحة" من وقت الفتح المذكور لحد نهاية اليوم، و"مغلقة" قبل
+  ميعاد الفتح فقط. لو حبيت تضيف وقت إغلاق فعلي في المستقبل، عدّل getOpenMinutes
+  بالأسفل (وأضف سقف إغلاق لو لزم الأمر) من غير ما تلمس أي حاجة تانية.
+*/
+
+function getCairoNow(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Africa/Cairo',
+    weekday: 'long',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false
+  }).formatToParts(date);
+  const map = {};
+  parts.forEach((p) => { map[p.type] = p.value; });
+  let hour = parseInt(map.hour, 10);
+  if (hour === 24) hour = 0;
+  return { weekday: map.weekday, hour, minute: parseInt(map.minute, 10) };
+}
+
+function formatArabicClockTime(h, m) {
+  let period;
+  let displayHour;
+  if (h < 12) {
+    period = 'صباحًا';
+    displayHour = h === 0 ? 12 : h;
+  } else if (h < 15) {
+    period = 'ظهرًا';
+    displayHour = h === 12 ? 12 : h - 12;
+  } else if (h < 18) {
+    period = 'عصرًا';
+    displayHour = h - 12;
+  } else {
+    period = 'مساءً';
+    displayHour = h > 12 ? h - 12 : h;
+  }
+  const mm = String(m).padStart(2, '0');
+  return `${displayHour}:${mm} ${period}`;
+}
+
+const SERVICE_OPENING_RULES = {
+  glasses: () => 12 * 60, // نور العيون للنظارات: يوميًا من 12 ظهرًا
+  lab: (weekday) => (weekday === 'Friday' ? 14 * 60 : 9 * 60 + 30) // معمل العربي الحديث: يوميًا 9:30، الجمعة 2 ظهرًا
+};
+
+function computeServiceStatus(getOpenMinutes) {
+  const { weekday, hour, minute } = getCairoNow();
+  const nowMinutes = hour * 60 + minute;
+  const openMinutes = getOpenMinutes(weekday);
+  if (nowMinutes >= openMinutes) return { open: true };
+  const h = Math.floor(openMinutes / 60);
+  const m = openMinutes % 60;
+  return { open: false, opensAt: formatArabicClockTime(h, m) };
+}
+
+function renderServiceStatus(elementId, getOpenMinutes) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const status = computeServiceStatus(getOpenMinutes);
+  if (status.open) {
+    el.textContent = '🟢 متاح الآن';
+    el.classList.add('is-open');
+    el.classList.remove('is-closed');
+  } else {
+    el.textContent = `🔴 مغلق الآن — يفتح الساعة ${status.opensAt}`;
+    el.classList.add('is-closed');
+    el.classList.remove('is-open');
+  }
+}
+
+function updateServiceStatuses() {
+  renderServiceStatus('service-status-glasses', SERVICE_OPENING_RULES.glasses);
+  renderServiceStatus('service-status-lab', SERVICE_OPENING_RULES.lab);
+}
+
+updateServiceStatuses();
+setInterval(updateServiceStatuses, 60000);
+
 /* ============================ بدء التشغيل ============================ */
 
 updateTodayHighlight();
