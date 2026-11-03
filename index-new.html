@@ -221,8 +221,10 @@
     /* ===== قايمة الموبايل: درج جانبي بألوان الأقسام مع تعتيم للخلفية ===== */
     @media (max-width:960px) {
       .menu { display:grid; place-items:center; width:44px; height:44px; padding:0; border-radius:12px; background:#eef7f9; font-size:1.5rem; line-height:1; }
-      nav#nav-links { display:flex; position:absolute; top:calc(100% + 1px); left:calc(50% - 50vw); right:auto; width:min(80vw,310px); max-height:calc(100vh - 130px); max-height:calc(100dvh - 130px); flex-direction:column; align-items:stretch; gap:0; padding:0 0 10px; overflow-y:auto; border:0; border-radius:0 0 22px 0; background:#fff; box-shadow:12px 14px 34px rgba(6,60,74,.26); transform:translateX(-106%); visibility:hidden; transition:transform .28s ease, visibility 0s linear .28s; }
-      nav#nav-links.open { transform:none; visibility:visible; transition:transform .28s ease; }
+      nav#nav-links { display:none; position:absolute; top:calc(100% + 1px); left:calc(50% - 50vw); right:auto; width:min(80vw,310px); max-height:calc(100vh - 130px); max-height:calc(100dvh - 130px); flex-direction:column; align-items:stretch; gap:0; padding:0 0 10px; overflow-y:auto; border:0; border-radius:0 0 22px 0; background:#fff; box-shadow:12px 14px 34px rgba(6,60,74,.26); }
+      nav#nav-links.open { display:flex; animation:navDrawerIn .26s ease-out; }
+      @keyframes navDrawerIn { from { clip-path:inset(0 100% 0 0); } to { clip-path:inset(0 -50px -50px 0); } }
+      @media (prefers-reduced-motion:reduce) { nav#nav-links.open { animation:none; } }
       nav#nav-links::before { content:""; flex:none; height:5px; margin-bottom:6px; background:linear-gradient(90deg,#94cf36 0 25%,#ff981d 25% 50%,#23a8cf 50% 75%,#d51822 75% 100%); }
       nav#nav-links a { display:flex; align-items:center; gap:14px; padding:16px 22px; border:0; border-bottom:1px solid #eef4f6; color:var(--ink); font-size:1.02rem; font-weight:700; }
       nav#nav-links a:last-child { border-bottom:0; }
