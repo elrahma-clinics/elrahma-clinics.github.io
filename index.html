@@ -195,8 +195,51 @@
     footer .container { display:flex; justify-content:space-between; gap:14px; }
     .floating-wa { position:fixed; left:20px; bottom:20px; z-index:9; display:flex; align-items:center; gap:8px; padding:12px 16px; border-radius:999px; color:#fff; background:#1fa855; box-shadow:0 8px 22px rgba(13,112,54,.28); font-size:.8rem; font-weight:700; }
     .mobile-actionbar { display:none; }
+    /* ===== هوية ألوان اللوجو: كل قسم له لون مميز (أزرق / برتقالي / أخضر / أحمر) ===== */
+    #specialties { --a:#23a8cf; --a-text:#18738e; --a-pill:#def2f8; background:#f0f9fc; }
+    #schedule    { --a:#ff981d; --a-text:#9e5e11; --a-pill:#fff0dd; background:#fff8ef; }
+    #services    { --a:#94cf36; --a-text:#55781f; --a-pill:#eff8e1; background:#f8fcf1; }
+    #about       { --a:#23a8cf; --a-text:#18738e; --a-pill:#def2f8; }
+    #contact     { --a:#d51822; --a-text:#ff9aa0; --a-pill:rgba(213,24,34,.22); }
+    section:not(.hero), footer { position:relative; }
+    section:not(.hero)::before, footer::before { content:""; position:absolute; top:0; right:0; left:0; height:6px; background:linear-gradient(90deg,#94cf36 0 25%,#ff981d 25% 50%,#23a8cf 50% 75%,#d51822 75% 100%); }
+    footer::before { height:4px; }
+    .section-kicker { display:inline-block; padding:4px 14px; border-radius:999px; color:var(--a-text, var(--teal)); background:var(--a-pill, #e6f6f9); }
+    .section-head h2::after, .about-copy h2::after { content:""; display:block; width:56px; height:5px; margin:12px auto 0; border-radius:3px; background:var(--a, var(--teal)); }
+    .about-copy h2::after { margin:12px 0 0; }
+    #specialties .specialty:hover, #specialties .specialty.is-selected { border-color:var(--a); }
+    #schedule .scope-tabs { background:var(--a-pill); }
+    #services .service { border-color:#dff1c3; }
+    #services .service .service-icon { background:var(--a-text); }
+    #about .check { background:#55781f; }
+    #contact .section-kicker { color:#ff9aa0; background:rgba(213,24,34,.22); }
+    #contact .contact-card i { color:#ff9aa0; }
+    #contact .quick-action:first-child { border-color:#d51822; background:#d51822; }
+    #contact .quick-action:first-child:hover { background:#b9141d; }
     @media (max-width:960px) { nav { display:none; } nav.open { position:absolute; top:67px; right:0; left:0; display:flex; flex-direction:column; align-items:stretch; gap:0; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:0 15px 30px rgba(6,60,74,.14); } nav.open a { padding:13px 16px; border-bottom:1px solid #edf3f5; } nav.open a:last-child { border-bottom:0; } .menu { display:block; } .hero-grid,.about { grid-template-columns:1fr; } .hero-card { display:none; } .specialty-grid { grid-template-columns:repeat(3,1fr); } .schedule-cards { grid-template-columns:repeat(2,1fr); } .quick-actions { grid-template-columns:repeat(2,1fr); } }
     @media (max-width:610px) { .container { width:min(100% - 28px,1140px); } .topbar .container { justify-content:center; } .topbar .container > span { display:none; } .nav { min-height:68px; } .brand { font-size:.83rem; } .brand img { width:53px; height:53px; } .nav > .button { padding:10px 12px; font-size:.73rem; } .hero { padding:54px 0 68px; } .hero h1 { letter-spacing:-.8px; } .hero-actions { display:grid; grid-template-columns:1fr 1fr; } .hero-actions .button { padding:12px 8px; font-size:.79rem; } .hero-actions .button:last-child { grid-column:1/-1; } .stats-grid { grid-template-columns:1fr; } .stat + .stat { border-top:1px solid var(--line); border-right:0; } section { padding:58px 0; } .specialty-grid { grid-template-columns:repeat(2,1fr); gap:10px; } .specialty { min-height:132px; padding:15px 13px; } .schedule-cards { grid-template-columns:1fr; padding:14px; } .doctor-card { min-height:0; } .filter-chip { font-size:.68rem; } .service-grid,.contact-grid { grid-template-columns:1fr; } .quick-actions { grid-template-columns:1fr 1fr; } .about-art { min-height:275px; } .about-art p { right:27px; bottom:26px; left:27px; font-size:.86rem; } .contact-card { min-height:auto; } footer .container { display:block; text-align:center; } .floating-wa { left:14px; bottom:calc(74px + env(safe-area-inset-bottom)); } body { padding-bottom:66px; } .mobile-actionbar { position:fixed; left:0; right:0; bottom:0; z-index:12; display:flex; background:#fff; border-top:1px solid var(--line); box-shadow:0 -6px 18px rgba(6,60,74,.1); padding:7px 6px calc(7px + env(safe-area-inset-bottom)); } .mobile-actionbar a { display:flex; flex:1; flex-direction:column; align-items:center; gap:3px; padding:6px 4px; border-radius:10px; color:#31525c; font-size:.64rem; font-weight:700; } .mobile-actionbar a:active { background:#eef7f9; } .mobile-actionbar .icon-svg { width:19px; height:19px; color:var(--teal); } .schedule-toolbar { gap:10px; } .scope-tabs { width:100%; justify-content:center; } .schedule-search { max-width:none; } }
+    /* ===== قايمة الموبايل: درج جانبي بألوان الأقسام مع تعتيم للخلفية ===== */
+    @media (max-width:960px) {
+      .menu { display:grid; place-items:center; width:44px; height:44px; padding:0; border-radius:12px; background:#eef7f9; font-size:1.5rem; line-height:1; }
+      nav#nav-links { display:none; position:absolute; top:calc(100% + 1px); left:calc(50% - 50vw); right:auto; width:min(80vw,310px); max-height:calc(100vh - 130px); max-height:calc(100dvh - 130px); flex-direction:column; align-items:stretch; gap:0; padding:0 0 10px; overflow-y:auto; border:0; border-radius:0 0 22px 0; background:#fff; box-shadow:12px 14px 34px rgba(6,60,74,.26); }
+      nav#nav-links.open { display:flex; animation:navDrawerIn .26s ease-out; }
+      @keyframes navDrawerIn { from { clip-path:inset(0 100% 0 0); } to { clip-path:inset(0 -50px -50px 0); } }
+      @media (prefers-reduced-motion:reduce) { nav#nav-links.open { animation:none; } }
+      nav#nav-links::before { content:""; flex:none; height:5px; margin-bottom:6px; background:linear-gradient(90deg,#94cf36 0 25%,#ff981d 25% 50%,#23a8cf 50% 75%,#d51822 75% 100%); }
+      nav#nav-links a { display:flex; align-items:center; gap:14px; padding:16px 22px; border:0; border-bottom:1px solid #eef4f6; color:var(--ink); font-size:1.02rem; font-weight:700; }
+      nav#nav-links a:last-child { border-bottom:0; }
+      nav#nav-links a::before { content:""; flex:none; width:5px; height:24px; border-radius:3px; background:var(--c,#087f94); }
+      nav#nav-links a::after { content:"\2039"; margin-inline-start:auto; color:#9bb3ba; font-size:1.5rem; line-height:1; }
+      nav#nav-links a:active { background:#f0f9fc; }
+      nav#nav-links a:nth-child(1) { --c:#087f94; }
+      nav#nav-links a:nth-child(2) { --c:#23a8cf; }
+      nav#nav-links a:nth-child(3) { --c:#ff981d; }
+      nav#nav-links a:nth-child(4) { --c:#94cf36; }
+      nav#nav-links a:nth-child(5) { --c:#d51822; }
+      body.menu-open header { z-index:30; }
+      @media (max-height:480px) { nav#nav-links a { padding:10px 20px; font-size:.95rem; } }
+      body.menu-open::after { content:""; position:fixed; top:0; right:0; bottom:0; left:0; z-index:25; background:rgba(6,60,74,.5); }
+    }
   </style>
 </head>
 <body>
@@ -462,12 +505,10 @@ c32 103 111 262 157 314 l33 37 56 -19 c31 -11 83 -23 115 -28 53 -9 67 -7
         <path d="M5 4h3.5l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5l1.5-2 4 1.5V19a2 2 0 0 1-2.2 2A16 16 0 0 1 3 5.2 2 2 0 0 1 5 4Z"/>
       </symbol>
       <symbol id="icon-whatsapp" viewBox="0 0 24 24">
-        <path d="M4 20l1.4-4.2A8 8 0 1 1 8.6 19L4 20Z"/>
-        <path d="M8.5 9.5c0 3 2.5 5.5 5.5 5.5"/>
+        <path fill="currentColor" stroke="none" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.173-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
       </symbol>
       <symbol id="icon-channel" viewBox="0 0 24 24">
-        <path d="M4 10v4h3l5 4V6L7 10H4Z"/>
-        <path d="M16 9a4 4 0 0 1 0 6"/>
+        <path fill="currentColor" stroke="none" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.173-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
       </symbol>
       <symbol id="icon-clock" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9"/>
@@ -524,5 +565,17 @@ c32 103 111 262 157 314 l33 37 56 -19 c31 -11 83 -23 115 -28 53 -9 67 -7
     <a href="https://maps.app.goo.gl/NtYrvfoB6vNFKtUUA" target="_blank" rel="noopener"><svg class="icon-svg"><use href="#icon-pin"></use></svg><span>الموقع</span></a>
   </nav>
   <script src="schedule.js"></script><script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script>
+(function(){
+  var nav=document.getElementById('nav-links'), btn=document.getElementById('mobile-menu');
+  if(!nav||!btn) return;
+  function isOpen(){ return nav.classList.contains('open'); }
+  new MutationObserver(function(){ document.body.classList.toggle('menu-open', isOpen()); }).observe(nav,{attributes:true,attributeFilter:['class']});
+  document.addEventListener('click',function(e){
+    if(isOpen() && !e.target.closest('#nav-links') && !e.target.closest('#mobile-menu')) btn.click();
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && isOpen()) btn.click(); });
+})();
+</script>
 </body>
 </html>
