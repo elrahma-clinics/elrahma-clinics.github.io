@@ -218,6 +218,25 @@
     #contact .quick-action:first-child:hover { background:#b9141d; }
     @media (max-width:960px) { nav { display:none; } nav.open { position:absolute; top:67px; right:0; left:0; display:flex; flex-direction:column; align-items:stretch; gap:0; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:0 15px 30px rgba(6,60,74,.14); } nav.open a { padding:13px 16px; border-bottom:1px solid #edf3f5; } nav.open a:last-child { border-bottom:0; } .menu { display:block; } .hero-grid,.about { grid-template-columns:1fr; } .hero-card { display:none; } .specialty-grid { grid-template-columns:repeat(3,1fr); } .schedule-cards { grid-template-columns:repeat(2,1fr); } .quick-actions { grid-template-columns:repeat(2,1fr); } }
     @media (max-width:610px) { .container { width:min(100% - 28px,1140px); } .topbar .container { justify-content:center; } .topbar .container > span { display:none; } .nav { min-height:68px; } .brand { font-size:.83rem; } .brand img { width:53px; height:53px; } .nav > .button { padding:10px 12px; font-size:.73rem; } .hero { padding:54px 0 68px; } .hero h1 { letter-spacing:-.8px; } .hero-actions { display:grid; grid-template-columns:1fr 1fr; } .hero-actions .button { padding:12px 8px; font-size:.79rem; } .hero-actions .button:last-child { grid-column:1/-1; } .stats-grid { grid-template-columns:1fr; } .stat + .stat { border-top:1px solid var(--line); border-right:0; } section { padding:58px 0; } .specialty-grid { grid-template-columns:repeat(2,1fr); gap:10px; } .specialty { min-height:132px; padding:15px 13px; } .schedule-cards { grid-template-columns:1fr; padding:14px; } .doctor-card { min-height:0; } .filter-chip { font-size:.68rem; } .service-grid,.contact-grid { grid-template-columns:1fr; } .quick-actions { grid-template-columns:1fr 1fr; } .about-art { min-height:275px; } .about-art p { right:27px; bottom:26px; left:27px; font-size:.86rem; } .contact-card { min-height:auto; } footer .container { display:block; text-align:center; } .floating-wa { left:14px; bottom:calc(74px + env(safe-area-inset-bottom)); } body { padding-bottom:66px; } .mobile-actionbar { position:fixed; left:0; right:0; bottom:0; z-index:12; display:flex; background:#fff; border-top:1px solid var(--line); box-shadow:0 -6px 18px rgba(6,60,74,.1); padding:7px 6px calc(7px + env(safe-area-inset-bottom)); } .mobile-actionbar a { display:flex; flex:1; flex-direction:column; align-items:center; gap:3px; padding:6px 4px; border-radius:10px; color:#31525c; font-size:.64rem; font-weight:700; } .mobile-actionbar a:active { background:#eef7f9; } .mobile-actionbar .icon-svg { width:19px; height:19px; color:var(--teal); } .schedule-toolbar { gap:10px; } .scope-tabs { width:100%; justify-content:center; } .schedule-search { max-width:none; } }
+    /* ===== قايمة الموبايل: درج جانبي بألوان الأقسام مع تعتيم للخلفية ===== */
+    @media (max-width:960px) {
+      .menu { display:grid; place-items:center; width:44px; height:44px; padding:0; border-radius:12px; background:#eef7f9; font-size:1.5rem; line-height:1; }
+      nav#nav-links { display:flex; position:absolute; top:calc(100% + 1px); right:calc(50% - 50vw); left:auto; width:min(80vw,310px); max-height:calc(100vh - 130px); max-height:calc(100dvh - 130px); flex-direction:column; align-items:stretch; gap:0; padding:0 0 10px; overflow-y:auto; border:0; border-radius:0 0 0 22px; background:#fff; box-shadow:-12px 14px 34px rgba(6,60,74,.26); transform:translateX(106%); visibility:hidden; transition:transform .28s ease, visibility 0s linear .28s; }
+      nav#nav-links.open { transform:none; visibility:visible; transition:transform .28s ease; }
+      nav#nav-links::before { content:""; flex:none; height:5px; margin-bottom:6px; background:linear-gradient(90deg,#94cf36 0 25%,#ff981d 25% 50%,#23a8cf 50% 75%,#d51822 75% 100%); }
+      nav#nav-links a { display:flex; align-items:center; gap:14px; padding:16px 22px; border:0; border-bottom:1px solid #eef4f6; color:var(--ink); font-size:1.02rem; font-weight:700; }
+      nav#nav-links a:last-child { border-bottom:0; }
+      nav#nav-links a::before { content:""; flex:none; width:5px; height:24px; border-radius:3px; background:var(--c,#087f94); }
+      nav#nav-links a::after { content:"\2039"; margin-inline-start:auto; color:#9bb3ba; font-size:1.5rem; line-height:1; }
+      nav#nav-links a:active { background:#f0f9fc; }
+      nav#nav-links a:nth-child(1) { --c:#087f94; }
+      nav#nav-links a:nth-child(2) { --c:#23a8cf; }
+      nav#nav-links a:nth-child(3) { --c:#ff981d; }
+      nav#nav-links a:nth-child(4) { --c:#94cf36; }
+      nav#nav-links a:nth-child(5) { --c:#d51822; }
+      body.menu-open header { z-index:30; }
+      body.menu-open::after { content:""; position:fixed; top:0; right:0; bottom:0; left:0; z-index:25; background:rgba(6,60,74,.5); }
+    }
   </style>
 </head>
 <body>
@@ -545,5 +564,17 @@ c32 103 111 262 157 314 l33 37 56 -19 c31 -11 83 -23 115 -28 53 -9 67 -7
     <a href="https://maps.app.goo.gl/NtYrvfoB6vNFKtUUA" target="_blank" rel="noopener"><svg class="icon-svg"><use href="#icon-pin"></use></svg><span>الموقع</span></a>
   </nav>
   <script src="schedule.js"></script><script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script>
+(function(){
+  var nav=document.getElementById('nav-links'), btn=document.getElementById('mobile-menu');
+  if(!nav||!btn) return;
+  function isOpen(){ return nav.classList.contains('open'); }
+  new MutationObserver(function(){ document.body.classList.toggle('menu-open', isOpen()); }).observe(nav,{attributes:true,attributeFilter:['class']});
+  document.addEventListener('click',function(e){
+    if(isOpen() && !e.target.closest('#nav-links') && !e.target.closest('#mobile-menu')) btn.click();
+  });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && isOpen()) btn.click(); });
+})();
+</script>
 </body>
 </html>
