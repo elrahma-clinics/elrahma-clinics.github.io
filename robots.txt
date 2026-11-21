@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://elrahma-clinics.github.io/sitemap.xml
